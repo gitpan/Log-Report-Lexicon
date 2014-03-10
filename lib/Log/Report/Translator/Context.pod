@@ -36,7 +36,7 @@ the gender is set as context keyword in the message:
 
 =over 4
 
-=item Log::Report::Translator::Context-E<gt>B<new>(OPTIONS)
+=item Log::Report::Translator::Context-E<gt>B<new>(%options)
 
  -Option--Default
   rules   {}
@@ -63,24 +63,24 @@ Returns a HASH to the simplified context maps.
 
 =over 4
 
-=item $obj-E<gt>B<ctxtFor>(MESSAGE, LANG, [CONTEXT])
+=item $obj-E<gt>B<ctxtFor>( $message, $lang, [$context] )
 
 Returns a pair of the MSGID stripped from context markup, and the
-context evaluated into the msgctxt string.  The MESSAGE is a
-L<Log::Report::Message|Log::Report::Message> object.  The CONTEXT is the default context
+context evaluated into the msgctxt string.  The $message is a
+L<Log::Report::Message|Log::Report::Message> object.  The $context is the default context
 for a certain textdomain.
 
   my ($msgid, $msgctxt) = $context->ctxtFor($msg, $lang, $context);
 
-=item $obj-E<gt>B<expand>(MSGID, LANGUAGE, OPTIONS)
+=item $obj-E<gt>B<expand>($msgid, $language, %options)
 
 Expand the context settings into all possible combinations which need
-translations in the PO file.  This may depend on the LANGUAGE.
-The MSGID is used in error messages.
+translations in the PO file.  This may depend on the $language.
+The $msgid is used in error messages.
 
-=item $obj-E<gt>B<needDecode>(SOURCE, STRING|ARRAY|HASH|LIST)
+=item $obj-E<gt>B<needDecode>($source, STRING|ARRAY|HASH|LIST)
 
-=item Log::Report::Translator::Context-E<gt>B<needDecode>(SOURCE, STRING|ARRAY|HASH|LIST)
+=item Log::Report::Translator::Context-E<gt>B<needDecode>($source, STRING|ARRAY|HASH|LIST)
 
 Converts the context settings passed with the MSGID, into a HASH which will
 be matched to the context providers.
@@ -319,8 +319,8 @@ as default or for your language.
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

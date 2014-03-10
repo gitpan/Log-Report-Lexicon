@@ -22,12 +22,12 @@ created.
 
 =over 4
 
-=item Log::Report::Lexicon::Index-E<gt>B<new>(DIRECTORY, OPTIONS)
+=item Log::Report::Lexicon::Index-E<gt>B<new>($directory, %options)
 
 Create an index for a certain directory.  If the directory does not
 exist or is empty, then the object will still be created.
 
-All files the DIRECTORY tree which are recognized as an translation table
+All files the $directory tree which are recognized as an translation table
 format which is understood will be listed.  Momentarily, those are:
 
 =over
@@ -57,19 +57,19 @@ Returns the directory name.
 
 =over 4
 
-=item $obj-E<gt>B<addFile>(BASENAME, [ABSOLUTE])
+=item $obj-E<gt>B<addFile>( $basename, [$absolute] )
 
-Add a certain file to the index.  This method returns the ABSOLUTE
+Add a certain file to the index.  This method returns the $absolute
 path to that file, which must be used to access it.  When not explicitly
-specified, the ABSOLUTE path will be calculated.
+specified, the $absolute path will be calculated.
 
-=item $obj-E<gt>B<find>(TEXTDOMAIN, LOCALE)
+=item $obj-E<gt>B<find>($textdomain, $locale)
 
 Lookup the best translation table, according to the rules described
 in chapter L</DETAILS>, below.
 
 Returned is a filename, or C<undef> if nothing is defined for the
-LOCALE (there is no default on this level).
+$locale (there is no default on this level).
 
 =item $obj-E<gt>B<index>()
 
@@ -78,13 +78,13 @@ Force the creation of the index (if not already done).  Returns a hash
 with key-value pairs, where the key is the lower-cased version of the
 filename, and the value the case-sensitive version of the filename.
 
-=item $obj-E<gt>B<list>(DOMAIN, [EXTENSION])
+=item $obj-E<gt>B<list>( $domain, [$extension] )
 
 Returned is a list of filenames which is used to update the list of
 MSGIDs when source files have changed.  All translation files which
-belong to a certain DOMAIN are listed.
+belong to a certain $domain are listed.
 
-The EXTENSION filter can be used to reduce the filenames further, for
+The $extension filter can be used to reduce the filenames further, for
 instance to select only C<po> or only C<mo> files, and ignore readme's.
 Use an string, without dot and interpreted case-insensitive, or a
 regular expression.
@@ -187,8 +187,8 @@ from you [please help improve this]), and are treated case-INsensitive!
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

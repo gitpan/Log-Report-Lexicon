@@ -53,7 +53,7 @@ The run-time component of translations.
 
 =over 4
 
-=item Log::Report::Lexicon-E<gt>B<new>(OPTIONS)
+=item Log::Report::Lexicon-E<gt>B<new>(%options)
 
 =back
 
@@ -61,8 +61,8 @@ The run-time component of translations.
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

@@ -6,8 +6,7 @@ use warnings;
 use strict;
 
 package Log::Report::Lexicon::POT;
-use vars '$VERSION';
-$VERSION = '1.01';
+our $VERSION = '1.02';
 
 use base 'Log::Report::Lexicon::Table';
 
@@ -94,12 +93,12 @@ sub write($@)
 {   my $self = shift;
     my $file = @_%2 ? shift : $self->filename;
     my %args = @_;
-    my $act  = $args{only_active} ? 'ACTIVE' : undef;
 
     defined $file
         or error __"no filename or file-handle specified for PO";
 
-    my @opt  = (nplurals => $self->nrPlurals);
+    my $need_refs = $args{only_active};
+    my @opt       = (nr_plurals => $self->nrPlurals);
 
     my $fh;
     if(ref $file) { $fh = $file }
@@ -115,15 +114,14 @@ sub write($@)
     foreach my $msgid (sort keys %$index)
     {   next if $msgid eq MSGID_HEADER;
 
-        my $po = $index->{$msgid};
-        if(blessed $po)
-        {   $fh->print("\n", $po->toString(@opt)) unless $po->unused;
-            next;
-        }
+        my $rec  = $index->{$msgid};
+        my @recs = blessed $rec ? $rec   # one record with $msgid
+          : @{$rec}{sort keys %$rec};    # multiple records, msgctxt
 
-        foreach my $c (sort keys %$po)
-        {   my $p = $po->{$c};
-            $fh->print("\n", $p->toString(@opt)) unless $p->unused;
+        foreach my $po (@recs)
+        {   next if $po->useless;
+            next if $need_refs && !$po->references;
+            $fh->print("\n", $po->toString(@opt));
         }
     }
 
@@ -284,7 +282,7 @@ sub stats()
     {   next if $po->msgid eq MSGID_HEADER;
         $stats{msgids}++;
         $stats{fuzzy}++    if $po->fuzzy;
-        $stats{inactive}++ if !$po->isActive && !$po->unused;
+        $stats{inactive}++ if !$po->isActive && !$po->useless;
     }
     \%stats;
 }

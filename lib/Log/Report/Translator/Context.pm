@@ -6,8 +6,7 @@ use warnings;
 use strict;
 
 package Log::Report::Translator::Context;
-use vars '$VERSION';
-$VERSION = '1.01';
+our $VERSION = '1.02';
 
 
 use Log::Report 'log-report-lexicon';
@@ -48,7 +47,7 @@ sub ctxtFor($$;$)
     my $msg_context = $self->needDecode($rawid, $msg->context || {});
     $def_context  ||= {};
 #use Data::Dumper;
-#warn "CONTEXT = ", Dumper $msg, $msg_context, $def_context;
+#warn "$context = ", Dumper $msg, $msg_context, $def_context;
 
     my @c;
     foreach my $tag (@$tags)

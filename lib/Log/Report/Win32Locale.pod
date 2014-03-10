@@ -27,19 +27,19 @@ Returns the encoding name (usable with module Encode) based on the current
 codepage.  For example, C<cp1252> for iso-8859-1 (latin-1) or C<cp932> for
 Shift-JIS Japanese.  Returns undef if the encoding cannot be identified.
 
-=item B<codepage_to_iso>(CODEPAGE)
+=item B<codepage_to_iso>($codepage)
 
-Translate windows CODEPAGE into ISO code.  The CODEPAGE is numeric
+Translate windows $codepage into ISO code.  The $codepage is numeric
 or a hex string like '0x0304'.
 
-=item B<iso_locale>([CODEPAGE])
+=item B<iso_locale>( [$codepage] )
 
 Returns the ISO string for the Microsoft codepage locale.  Might return
 C<undef>/false.  By default, the actual codepage is used.
 
-=item B<iso_to_codepage>(ISO)
+=item B<iso_to_codepage>($iso)
 
-Returns the numeric value of the codepage.  The ISO may look like
+Returns the numeric value of the codepage.  The $iso may look like
 this: C<xx_YY>.  Then, first the C<xx_YY> is looked-up.  If that does
 not exist, C<xx> is tried.
 
@@ -78,8 +78,8 @@ Returns the locale setting from the control panel.
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

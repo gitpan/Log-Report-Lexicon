@@ -49,7 +49,7 @@ super efficient.
 
 =over 4
 
-=item Log::Report::Lexicon::Table-E<gt>B<new>(OPTIONS)
+=item Log::Report::Lexicon::Table-E<gt>B<new>(%options)
 
 =back
 
@@ -61,14 +61,14 @@ super efficient.
 
 =over 4
 
-=item $obj-E<gt>B<msgid>(STRING, [MSGCTXT])
+=item $obj-E<gt>B<msgid>( STRING, [$msgctxt] )
 
 Lookup the L<Log::Report::Lexicon::PO|Log::Report::Lexicon::PO> with the STRING.
 Returns C<undef> when not defined.
 
-=item $obj-E<gt>B<msgstr>(MSGID, [COUNT, MSGCTXT])
+=item $obj-E<gt>B<msgstr>( $msgid, [$count, $msgctxt] )
 
-Returns the translated string for MSGID.  When not specified, COUNT is 1.
+Returns the translated string for $msgid.  When not specified, $count is 1.
 
 =back
 
@@ -76,24 +76,24 @@ Returns the translated string for MSGID.  When not specified, COUNT is 1.
 
 =over 4
 
-=item $obj-E<gt>B<add>(PO)
+=item $obj-E<gt>B<add>($po)
 
-Add the information from a PO into this POT.  If the msgid of the PO
+Add the information from a $po into this POT.  If the msgid of the $po
 is already known, that is an error.
 
-=item $obj-E<gt>B<header>(FIELD)
+=item $obj-E<gt>B<header>($field)
 
 The translation of a blank MSGID is used to store a MIME header, which
-contains some meta-data.  The FIELD value is looked-up (case-insensitive)
+contains some meta-data.  The $field value is looked-up (case-insensitive)
 and returned.
 
 =item $obj-E<gt>B<nrPlurals>()
 
 Returns the number of plurals, when not known then '2'.
 
-=item $obj-E<gt>B<pluralIndex>(COUNT)
+=item $obj-E<gt>B<pluralIndex>($count)
 
-Returns the msgstr index used to translate a value of COUNT.
+Returns the msgstr index used to translate a value of $count.
 
 =item $obj-E<gt>B<setupPluralAlgorithm>()
 
@@ -101,10 +101,10 @@ This method needs to be called after setting (reading or creating) a new
 table header, to interpret the plural algorithm as specified in the
 C<Plural-Forms> header field.
 
-=item $obj-E<gt>B<translations>([ACTIVE])
+=item $obj-E<gt>B<translations>( [$active] )
 
 Returns a list with all defined L<Log::Report::Lexicon::PO|Log::Report::Lexicon::PO> objects. When
-the string C<ACTIVE> is given as parameter, only objects which have
+the string C<$active> is given as parameter, only objects which have
 references are returned.
 
 =back
@@ -119,8 +119,8 @@ references are returned.
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

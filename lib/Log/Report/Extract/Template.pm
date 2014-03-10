@@ -7,8 +7,7 @@ use warnings;
 use strict;
 
 package Log::Report::Extract::Template;
-use vars '$VERSION';
-$VERSION = '1.01';
+our $VERSION = '1.02';
 
 use base 'Log::Report::Extract';
 

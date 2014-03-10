@@ -32,25 +32,25 @@ this class cleanly.
 If you like to change the content of PO files, then use
 L<Log::Report::Lexicon::POT|Log::Report::Lexicon::POT>.
 
-See L<documentation in the base class|Log::Report::Lexicon::Table/"DESCRIPTION">.
+Extends L<"DESCRIPTION" in Log::Report::Lexicon::Table|Log::Report::Lexicon::Table/"DESCRIPTION">.
  
 =head1 METHODS
 
-See L<documentation in the base class|Log::Report::Lexicon::Table/"METHODS">.
+Extends L<"METHODS" in Log::Report::Lexicon::Table|Log::Report::Lexicon::Table/"METHODS">.
  
 =head2 Constructors
 
-See L<documentation in the base class|Log::Report::Lexicon::Table/"Constructors">.
+Extends L<"Constructors" in Log::Report::Lexicon::Table|Log::Report::Lexicon::Table/"Constructors">.
  
 =over 4
 
-=item Log::Report::Lexicon::POTcompact-E<gt>B<new>(OPTIONS)
+=item Log::Report::Lexicon::POTcompact-E<gt>B<new>(%options)
 
-See L<Log::Report::Lexicon::Table/"Constructors">
+Inherited, see L<Log::Report::Lexicon::Table/"Constructors">
 
-=item Log::Report::Lexicon::POTcompact-E<gt>B<read>(FILENAME, OPTIONS)
+=item Log::Report::Lexicon::POTcompact-E<gt>B<read>($filename, %options)
 
-Read the POT table information from FILENAME, as compact as possible.
+Read the POT table information from $filename, as compact as possible.
 Comments, plural-form, and such are lost on purpose: they are not
 needed for translations.
 
@@ -70,7 +70,7 @@ this explicitly, while it cannot be trustfully detected automatically.
 
 =head2 Attributes
 
-See L<documentation in the base class|Log::Report::Lexicon::Table/"Attributes">.
+Extends L<"Attributes" in Log::Report::Lexicon::Table|Log::Report::Lexicon::Table/"Attributes">.
  
 =over 4
 
@@ -82,56 +82,56 @@ Returns the name of the source file for this data.
 
 =head2 Managing PO's
 
-See L<documentation in the base class|Log::Report::Lexicon::Table/"Managing PO's">.
+Extends L<"Managing PO's" in Log::Report::Lexicon::Table|Log::Report::Lexicon::Table/"Managing PO's">.
  
 =head3 Translation
 
-See L<documentation in the base class|Log::Report::Lexicon::Table/"Translation">.
+Extends L<"Translation" in Log::Report::Lexicon::Table|Log::Report::Lexicon::Table/"Translation">.
  
 =over 4
 
-=item $obj-E<gt>B<msgid>(STRING, [MSGCTXT])
+=item $obj-E<gt>B<msgid>( STRING, [$msgctxt] )
 
 Lookup the translations with the STRING.  Returns a SCALAR, when only
 one translation is known, and an ARRAY wherein there are multiple.
 Returns C<undef> when the translation is not defined.
 
-=item $obj-E<gt>B<msgstr>(MSGID, [COUNT, [MSGCTXT])
+=item $obj-E<gt>B<msgstr>( $msgid, [$count, [$msgctxt] )
 
-Returns the translated string for MSGID.  When not specified, COUNT is 1
+Returns the translated string for $msgid.  When not specified, $count is 1
 (the single form).
 
 =back
 
 =head3 Administration
 
-See L<documentation in the base class|Log::Report::Lexicon::Table/"Administration">.
+Extends L<"Administration" in Log::Report::Lexicon::Table|Log::Report::Lexicon::Table/"Administration">.
  
 =over 4
 
-=item $obj-E<gt>B<add>(PO)
+=item $obj-E<gt>B<add>($po)
 
-See L<Log::Report::Lexicon::Table/"Administration">
+Inherited, see L<Log::Report::Lexicon::Table/"Administration">
 
-=item $obj-E<gt>B<header>(FIELD)
+=item $obj-E<gt>B<header>($field)
 
-See L<Log::Report::Lexicon::Table/"Administration">
+Inherited, see L<Log::Report::Lexicon::Table/"Administration">
 
 =item $obj-E<gt>B<nrPlurals>()
 
-See L<Log::Report::Lexicon::Table/"Administration">
+Inherited, see L<Log::Report::Lexicon::Table/"Administration">
 
-=item $obj-E<gt>B<pluralIndex>(COUNT)
+=item $obj-E<gt>B<pluralIndex>($count)
 
-See L<Log::Report::Lexicon::Table/"Administration">
+Inherited, see L<Log::Report::Lexicon::Table/"Administration">
 
 =item $obj-E<gt>B<setupPluralAlgorithm>()
 
-See L<Log::Report::Lexicon::Table/"Administration">
+Inherited, see L<Log::Report::Lexicon::Table/"Administration">
 
-=item $obj-E<gt>B<translations>([ACTIVE])
+=item $obj-E<gt>B<translations>( [$active] )
 
-See L<Log::Report::Lexicon::Table/"Administration">
+Inherited, see L<Log::Report::Lexicon::Table/"Administration">
 
 =back
 
@@ -145,8 +145,8 @@ See L<Log::Report::Lexicon::Table/"Administration">
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

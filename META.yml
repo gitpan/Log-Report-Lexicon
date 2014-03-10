@@ -26,8 +26,8 @@ requires:
   File::Temp: 0
   IO::File: 0
   List::Util: 0
-  Log::Report: 1.00
+  Log::Report: 1.02
   POSIX: 0
   Scalar::Util: 0
   Test::More: 0.86
-version: 1.01
+version: 1.02

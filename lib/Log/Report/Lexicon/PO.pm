@@ -6,8 +6,7 @@ use warnings;
 use strict;
 
 package Log::Report::Lexicon::PO;
-use vars '$VERSION';
-$VERSION = '1.01';
+our $VERSION = '1.02';
 
 
 use Log::Report 'log-report-lexicon';
@@ -359,9 +358,10 @@ sub toString(@)
 }
 
 
-sub unused()
+sub useless()
 {   my $self = shift;
     ! $self->references && ! $self->msgstr(0);
 }
+*unused = \&useless; # before <1.02
 
 1;

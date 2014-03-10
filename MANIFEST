@@ -36,7 +36,7 @@ t/04locale.t
 t/10context.t
 t/11ppiexp.t
 t/12ctxt.t
-t/12test/en.utf-8.po
+t/12test/en_US.UTF-8.po
 t/20pot_read.t
 t/21pot_modif.t
 t/22compact.t

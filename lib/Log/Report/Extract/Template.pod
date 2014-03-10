@@ -43,19 +43,19 @@ in the domain  and the existing PO files will get updated accordingly.
 If no translations exist yet, one C<$textdomain.po> file will be
 created as point to start.  Copy that file into C<$textdomain/$lang.po>
 
-See L<documentation in the base class|Log::Report::Extract/"DESCRIPTION">.
+Extends L<"DESCRIPTION" in Log::Report::Extract|Log::Report::Extract/"DESCRIPTION">.
  
 =head1 METHODS
 
-See L<documentation in the base class|Log::Report::Extract/"METHODS">.
+Extends L<"METHODS" in Log::Report::Extract|Log::Report::Extract/"METHODS">.
  
 =head2 Constructors
 
-See L<documentation in the base class|Log::Report::Extract/"Constructors">.
+Extends L<"Constructors" in Log::Report::Extract|Log::Report::Extract/"Constructors">.
  
 =over 4
 
-=item Log::Report::Extract::Template-E<gt>B<new>(OPTIONS)
+=item Log::Report::Extract::Template-E<gt>B<new>(%options)
 
  -Option --Defined in          --Default
   charset  Log::Report::Extract  'utf-8'
@@ -84,45 +84,45 @@ See the DETAILS section below for a detailed explenation.
 
 =head2 Accessors
 
-See L<documentation in the base class|Log::Report::Extract/"Accessors">.
+Extends L<"Accessors" in Log::Report::Extract|Log::Report::Extract/"Accessors">.
  
 =over 4
 
 =item $obj-E<gt>B<charset>()
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
 =item $obj-E<gt>B<domain>()
 
 =item $obj-E<gt>B<domains>()
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
 =item $obj-E<gt>B<index>()
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
 =item $obj-E<gt>B<pattern>()
 
-=item $obj-E<gt>B<pots>(DOMAIN)
+=item $obj-E<gt>B<pots>($domain)
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
 =back
 
 =head2 Processors
 
-See L<documentation in the base class|Log::Report::Extract/"Processors">.
+Extends L<"Processors" in Log::Report::Extract|Log::Report::Extract/"Processors">.
  
 =over 4
 
-=item $obj-E<gt>B<cleanup>(OPTIONS)
+=item $obj-E<gt>B<cleanup>(%options)
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
-=item $obj-E<gt>B<process>(FILENAME, OPTIONS)
+=item $obj-E<gt>B<process>($filename, %options)
 
-Update the domains mentioned in the FILENAME.  All textdomains defined
+Update the domains mentioned in the $filename.  All textdomains defined
 in the file will get updated automatically, but not written before
 all files where processed.
 
@@ -142,17 +142,17 @@ Read the DETAILS section about this.
 
 =back
 
-=item $obj-E<gt>B<showStats>([DOMAINs])
+=item $obj-E<gt>B<showStats>( [$domains] )
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
-=item $obj-E<gt>B<store>(DOMAIN, FILENAME, LINENR, CONTEXT, MSG, [MSG_PLURAL])
+=item $obj-E<gt>B<store>( $domain, $filename, $linenr, $context, $msg, [$msg_plural] )
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
-=item $obj-E<gt>B<write>([DOMAIN])
+=item $obj-E<gt>B<write>( [$domain] )
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
 =back
 
@@ -165,9 +165,10 @@ to be translated.
 
 =head3 Predefined for Template-Toolkit
 
-There is not a single convertion for translations in C<Template-Toolkit>
-(see Template), so you need to specify which version you use and
-which function you want to run.
+There is not a single convention for translations in C<Template-Toolkit>
+(see Template), so you need to specify which version TT you use and
+which function name you want to use.  In extreme cases, you may even build
+separate translation tables by simply providing using functions.
 
 For instance
 
@@ -187,16 +188,17 @@ will scan for
    [% 'hi {n}' | loc(n => name) %]
 
 For TT1, the brackets can either be '[%...%]' or '%%...%%'.  The function
-name is treated case-sensitive.  Some people prefer 'l()'.
+name is treated case-sensitive.  Some people prefer 'l()' or 'L()'.
 
 The code needed
 
-   ... during initiation of the webserver
+   # during initiation of the webserver, once in your script (before fork)
    my $lexicons   = 'some-directory-for-translation-tables';
    my $translator = Log::Report::Translator::POT->new(lexicons => $lexicons);
-   Log::Report->translator($textdomain => $translator);
+   my $domain     = textdomain $textdomain;
+   $domain->configure(translator => $translator);
 
-   ... your standard template driver
+   # your standard template driver
    sub handler {
       ...
       my $vars      = { ...all kinds of values... };
@@ -208,7 +210,7 @@ The code needed
       print $output;
    }
 
-   ... anywhere in the same file
+   # anywhere in the same file
    sub translate {
        my $textdomain = ...;   # your choice when running xgettext-perl
        my $lang       = ...;   # how do you figure that out?
@@ -233,10 +235,51 @@ you need to run something like this:
   $extr->process($_) for @filenames;
   $extr->write;
 
+=head2 Use in combination with contexts
+
+This example extends the previous with using context sensitive translations,
+as implemented by L<Log::Report::Translator::Context|Log::Report::Translator::Context>.
+
+Let's say that the translation of some of the sentences on the website depend
+on the gender of the addressed person.  An example of the use in a TT2
+template:
+
+  [% loc("{name<gender} forgot his key", name => person.name %]
+
+The extraction script F<xgettext-perl> will expand this into two records
+in the PO file, respectively with msgctxt attribute 'gender=male' and
+'gender=female'.
+
+When your PO-files are not generated by 'xgettext-perl', you do not need
+a separate domain configuration file:
+
+  $domain->configure
+    ( context_rules => +{gender => ['male','female']}
+    , translator    => $translator
+    );
+
+When your PO-files are generated by 'xgettext-perl', you need to share
+the context-rules between that msgid extractor and your runtime code. That
+same file needs to be passed with the 'domain' parameter to the script.
+
+  # add context_rules either explicit or via 'config' filename
+  $domain->configure
+    ( config     => 'my/own/$domain.conf'
+    , translator => $translator
+    );
+
+Now, when you generate the pages, you need to set-up the right context.
+In this case, we set-up the gender of the person who gets addressed.
+(The name 'gender' is good for examples, but quite non-descriptive.
+Maybe 'user_gender' is more maintainable)
+
+  $domain->setContext( +{gender => 'male'} );  # or ('gender=male')
+  $domain->setContext( "gender=male" );        # same
+
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

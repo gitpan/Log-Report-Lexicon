@@ -28,7 +28,7 @@ translations exist yet, one C<textdomain/xx.po> file will be created.
 
 =over 4
 
-=item Log::Report::Extract-E<gt>B<new>(OPTIONS)
+=item Log::Report::Extract-E<gt>B<new>(%options)
 
  -Option --Default
   charset  'utf-8'
@@ -66,10 +66,10 @@ Returns a sorted list of all known domain names.
 Returns the L<Log::Report::Lexicon::Index|Log::Report::Lexicon::Index> object, which is listing
 the files in the lexicon directory tree.
 
-=item $obj-E<gt>B<pots>(DOMAIN)
+=item $obj-E<gt>B<pots>($domain)
 
 Returns the list of L<Log::Report::Lexicon::POT|Log::Report::Lexicon::POT> objects which contain
-the tables for DOMAIN.
+the tables for $domain.
 
 =back
 
@@ -77,7 +77,7 @@ the tables for DOMAIN.
 
 =over 4
 
-=item $obj-E<gt>B<cleanup>(OPTIONS)
+=item $obj-E<gt>B<cleanup>(%options)
 
 Remove all references.
 
@@ -93,15 +93,15 @@ names, or a HASH where the keys are the named.
 
 =back
 
-=item $obj-E<gt>B<process>(FILENAME, OPTIONS)
+=item $obj-E<gt>B<process>($filename, %options)
 
-Update the domains mentioned in the FILENAME.  All text-domains defined
+Update the domains mentioned in the $filename.  All text-domains defined
 in the file will get updated automatically, but should not written before
 all files are processed.
 
 Returned is the number of messages found in this particular file.
 
-=item $obj-E<gt>B<showStats>([DOMAINs])
+=item $obj-E<gt>B<showStats>( [$domains] )
 
 Show a status about the DOMAIN (by default all domains).  At least mode
 verbose is required to see this.
@@ -113,24 +113,24 @@ the 'mode':
 
    use Log::Report mode => 'DEBUG';  # or 'VERBOSE'
 
-=item $obj-E<gt>B<store>(DOMAIN, FILENAME, LINENR, CONTEXT, MSG, [MSG_PLURAL])
+=item $obj-E<gt>B<store>( $domain, $filename, $linenr, $context, $msg, [$msg_plural] )
 
-Register the existence of a (MSG, MSG_PLURAL) in all POTs of
-the DOMAIN.
+Register the existence of a ($msg, $msg_plural) in all POTs of
+the $domain.
 
-=item $obj-E<gt>B<write>([DOMAIN])
+=item $obj-E<gt>B<write>( [$domain] )
 
-Update the information of the files related to DOMAIN, by default all
+Update the information of the files related to $domain, by default all
 processed DOMAINS.
 
-All information known about the written DOMAIN is removed from the cache.
+All information known about the written $domain is removed from the cache.
 
 =back
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

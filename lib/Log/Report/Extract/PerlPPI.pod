@@ -33,7 +33,7 @@ to C<$lexicon/$domain/$lang.po> and edit that file.  You may use
 C<poedit> to edit po-files.  Do not forget to add the new po-file to
 your distribution (MANIFEST)
 
-See L<documentation in the base class|Log::Report::Extract/"DESCRIPTION">.
+Extends L<"DESCRIPTION" in Log::Report::Extract|Log::Report::Extract/"DESCRIPTION">.
  
 =head2 The extraction process
 
@@ -82,57 +82,57 @@ values of C<$format>.
 
 =head1 METHODS
 
-See L<documentation in the base class|Log::Report::Extract/"METHODS">.
+Extends L<"METHODS" in Log::Report::Extract|Log::Report::Extract/"METHODS">.
  
 =head2 Constructors
 
-See L<documentation in the base class|Log::Report::Extract/"Constructors">.
+Extends L<"Constructors" in Log::Report::Extract|Log::Report::Extract/"Constructors">.
  
 =over 4
 
-=item Log::Report::Extract::PerlPPI-E<gt>B<new>(OPTIONS)
+=item Log::Report::Extract::PerlPPI-E<gt>B<new>(%options)
 
-See L<Log::Report::Extract/"Constructors">
+Inherited, see L<Log::Report::Extract/"Constructors">
 
 =back
 
 =head2 Accessors
 
-See L<documentation in the base class|Log::Report::Extract/"Accessors">.
+Extends L<"Accessors" in Log::Report::Extract|Log::Report::Extract/"Accessors">.
  
 =over 4
 
 =item $obj-E<gt>B<charset>()
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
 =item $obj-E<gt>B<domains>()
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
 =item $obj-E<gt>B<index>()
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
-=item $obj-E<gt>B<pots>(DOMAIN)
+=item $obj-E<gt>B<pots>($domain)
 
-See L<Log::Report::Extract/"Accessors">
+Inherited, see L<Log::Report::Extract/"Accessors">
 
 =back
 
 =head2 Processors
 
-See L<documentation in the base class|Log::Report::Extract/"Processors">.
+Extends L<"Processors" in Log::Report::Extract|Log::Report::Extract/"Processors">.
  
 =over 4
 
-=item $obj-E<gt>B<cleanup>(OPTIONS)
+=item $obj-E<gt>B<cleanup>(%options)
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
-=item $obj-E<gt>B<process>(FILENAME, OPTIONS)
+=item $obj-E<gt>B<process>($filename, %options)
 
-Update the domains mentioned in the FILENAME.  All textdomains defined
+Update the domains mentioned in the $filename.  All textdomains defined
 in the file will get updated automatically, but not written before
 all files where processed.
 
@@ -145,24 +145,24 @@ all files where processed.
 
 =back
 
-=item $obj-E<gt>B<showStats>([DOMAINs])
+=item $obj-E<gt>B<showStats>( [$domains] )
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
-=item $obj-E<gt>B<store>(DOMAIN, FILENAME, LINENR, CONTEXT, MSG, [MSG_PLURAL])
+=item $obj-E<gt>B<store>( $domain, $filename, $linenr, $context, $msg, [$msg_plural] )
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
-=item $obj-E<gt>B<write>([DOMAIN])
+=item $obj-E<gt>B<write>( [$domain] )
 
-See L<Log::Report::Extract/"Processors">
+Inherited, see L<Log::Report::Extract/"Processors">
 
 =back
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 

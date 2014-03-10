@@ -17,7 +17,7 @@ records are kept in a POT file, implemented in L<Log::Report::Lexicon::POT|Log::
 
 =over 4
 
-=item Log::Report::Lexicon::PO-E<gt>B<new>(OPTIONS)
+=item Log::Report::Lexicon::PO-E<gt>B<new>(%options)
 
  -Option      --Default
   automatic     ""
@@ -42,9 +42,10 @@ See L<addAutomatic()|Log::Report::Lexicon::PO/"Attributes">.
 Translator added comments.
 See L<addComment()|Log::Report::Lexicon::PO/"Attributes">.
 
-=item format => ARRAY-OF-PAIRS|HASH
+=item format => ARRAY|HASH
 
-See L<format()|Log::Report::Lexicon::PO/"Attributes">.
+See L<format()|Log::Report::Lexicon::PO/"Attributes">.  Either an ARRAY with PAIRS or a HASH with that same
+information.
 
 =item fuzzy => BOOLEAN
 
@@ -99,22 +100,22 @@ The STRING is a blank separated list of LOCATIONS.  The LIST and
 ARRAY contain separate LOCATIONs.  A LOCATION is of the form
 C<filename:linenumber>.  Returns the internal HASH with references.
 
-=item $obj-E<gt>B<automatic>([LIST|ARRAY|STRING])
+=item $obj-E<gt>B<automatic>( [LIST|ARRAY|STRING] )
 
 Returns a STRING which contains the cleaned paragraph of automatically
 added comments.  If an argument is specified, it will replace the current
 comment.
 
-=item $obj-E<gt>B<comment>([LIST|ARRAY|STRING])
+=item $obj-E<gt>B<comment>( [LIST|ARRAY|STRING] )
 
 Returns a STRING which contains the cleaned paragraph of translator's
 comment.  If an argument is specified, it will replace the current
 comment.
 
-=item $obj-E<gt>B<format>(LANGUAGE|PAIRS|ARRAY-OF-PAIRS|HASH)
+=item $obj-E<gt>B<format>( $language | <PAIRS|ARRAY|HASH> )
 
-When one LANGUAGE is specified, it looks whether a C<LANGUAGE-format> or
-C<no-LANGUAGE-format> is present in the line of FLAGS.  This will return
+When one $language is specified, it looks whether a C<$language-format> or
+C<no-$language-format> is present in the line of FLAGS.  This will return
 C<1> (true) in the first case, C<0> (false) in the second case.  It will
 return C<undef> (also false) in case that both are not present.
 
@@ -123,15 +124,17 @@ value is either C<0>, C<1>, or C<undef>.
 
 example: use of format()
 
+ # getters
  if($po->format('c')) ...
  unless($po->format('perl-brace')) ...
  if(defined $po->format('java')) ...
 
+ # setters
  $po->format(java => 1);       # results in 'java-format'
  $po->format(java => 0);       # results in 'no-java-format'
  $po->format(java => undef);   # results in ''
 
-=item $obj-E<gt>B<fuzzy>([BOOLEAN])
+=item $obj-E<gt>B<fuzzy>( [BOOLEAN] )
 
 Returns whether the translation needs human inspection.
 
@@ -139,9 +142,9 @@ Returns whether the translation needs human inspection.
 
 Returns whether the translation has any references, or is the header.
 
-=item $obj-E<gt>B<keepReferencesTo>(TABLE)
+=item $obj-E<gt>B<keepReferencesTo>($table)
 
-Remove all references which are not found as key in the hash TABLE.
+Remove all references which are not found as key in the hash $table.
 Returns the number of references left.
 
 =item $obj-E<gt>B<msgctxt>()
@@ -152,25 +155,25 @@ Returns the message context, if provided.
 
 Returns the actual msgid, which cannot be C<undef>.
 
-=item $obj-E<gt>B<msgstr>([INDEX, [STRING]])
+=item $obj-E<gt>B<msgstr>( [$index, [STRING]] )
 
 With a STRING, a new translation will be set.  Without STRING, a
-lookup will take place.  When no plural is defined, the INDEX is
+lookup will take place.  When no plural is defined, the $index is
 ignored.
 
-=item $obj-E<gt>B<plural>([STRING])
+=item $obj-E<gt>B<plural>( [STRING] )
 
 Returns the actual msgid_plural, which can be C<undef>.
 
-=item $obj-E<gt>B<references>([STRING|LIST|ARRAY])
+=item $obj-E<gt>B<references>( [STRING|LIST|ARRAY] )
 
 Returns an unsorted list of LOCATIONS.  When options are specified,
 then those will be used to replace all currently defined references.
 Returns the unsorted LIST of references.
 
-=item $obj-E<gt>B<removeReferencesTo>(FILENAME)
+=item $obj-E<gt>B<removeReferencesTo>($filename)
 
-Remove all the references to the indicate FILENAME from the list.  Returns
+Remove all the references to the indicate $filename from the list.  Returns
 the number of refs left.
 
 =back
@@ -179,12 +182,12 @@ the number of refs left.
 
 =over 4
 
-=item Log::Report::Lexicon::PO-E<gt>B<fromText>(STRING, [WHERE])
+=item Log::Report::Lexicon::PO-E<gt>B<fromText>( STRING, [$where] )
 
-Parse the STRING into a new PO object.  The WHERE string should explain
+Parse the STRING into a new PO object.  The $where string should explain
 the location of the STRING, to be used in error messages.
 
-=item $obj-E<gt>B<toString>(OPTIONS)
+=item $obj-E<gt>B<toString>(%options)
 
 Format the object into a multi-lined string.
 
@@ -201,16 +204,16 @@ behavior is attempted.
 
 =back
 
-=item $obj-E<gt>B<unused>()
+=item $obj-E<gt>B<useless>()
 
-The message-id has no references anymore and no translations.
+[1.02] The message-id has no references anymore B<and> no translations.
 
 =back
 
 =head1 SEE ALSO
 
-This module is part of Log-Report-Lexicon distribution version 1.01,
-built on January 06, 2014. Website: F<http://perl.overmeer.net/log-report/>
+This module is part of Log-Report-Lexicon distribution version 1.02,
+built on March 10, 2014. Website: F<http://perl.overmeer.net/log-report/>
 
 =head1 LICENSE
 
