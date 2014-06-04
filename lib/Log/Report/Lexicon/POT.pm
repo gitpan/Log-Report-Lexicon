@@ -6,7 +6,8 @@ use warnings;
 use strict;
 
 package Log::Report::Lexicon::POT;
-our $VERSION = '1.02';
+use vars '$VERSION';
+$VERSION = '1.03';
 
 use base 'Log::Report::Lexicon::Table';
 
@@ -60,7 +61,7 @@ sub read($@)
     my $charset = $self->{LRLP_charset} = $args{charset}
         or error __x"charset parameter is required for {fn}", fn => $fn;
 
-    open my $fh, "<:encoding($charset)", $fn
+    open my $fh, "<:encoding($charset):crlf", $fn
         or fault __x"cannot read in {cs} from file {fn}"
              , cs => $charset, fn => $fn;
 

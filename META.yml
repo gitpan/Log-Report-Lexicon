@@ -30,4 +30,4 @@ requires:
   POSIX: 0
   Scalar::Util: 0
   Test::More: 0.86
-version: 1.02
+version: 1.03
